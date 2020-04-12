@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uri-mapping>
+    <uri name="person" func="sync.person.foo"/>
+</uri-mapping>
