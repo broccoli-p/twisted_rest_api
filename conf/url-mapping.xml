@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uri-mapping>
-    <uri name="person" func="sync.person.foo"/>
+    <uri target="sync.person" >
+        <mode type="post" func="insert"/>
+    </uri>
+    <uri target="sync.host" >
+        <mode type="post" func="insert"/>
+        <mode type="get" func="select"/>
+    </uri>
+    <uri target="sync.account" >
+    </uri>
 </uri-mapping>

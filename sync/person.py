@@ -1,2 +1,3 @@
-def foo():
-	return {'personid':'admin2'}
+def insert(data):
+	data['success'] = "True"
+	return data
