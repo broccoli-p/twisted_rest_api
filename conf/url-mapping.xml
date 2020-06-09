@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uri-mapping>
-    <uri target="sync.person" >
-        <mode type="post" func="insert"/>
+    <root-package value="api"/>
+    <uri target="comparePass" >
+        <mode type="POST" func="comparePassword"/>
+        <mode type="GET" func="ABC"/>
     </uri>
-    <uri target="sync.host" >
-        <mode type="post" func="insert"/>
-        <mode type="get" func="select"/>
-    </uri>
-    <uri target="sync.account" >
+    <uri target="aaaaaaa" >
+        <mode type="POST" func="comparePassword"/>
+        <mode type="GET" func="ABC"/>
     </uri>
 </uri-mapping>

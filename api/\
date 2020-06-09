@@ -1,0 +1,52 @@
+from common.database.oracle_connect import Connection
+from subprocess import check_output
+
+def _getpwdkey():
+    cursor = Connection.getCursor()
+    sql = '''
+        SELECT PWDKEY FROM CONFIG
+    '''
+    cursor.execute(sql)
+    cmd = '/home/appm/crypto/decode_only %s' %cursor.fetchone()[0]
+    return check_output([cmd], shell=True)
+
+def _encrypt_passwd(text):
+    cmd = "/home/appm/crypto/aes/encode %s %s" %(_getpwdkey(), text)
+    return check_output([cmd], shell=True)
+
+def _decrypt_passwd(text):
+    cmd = "/home/appm/crypto/aes/decode %s %s" %(_getpwdkey(), text)
+    return check_output([cmd], shell=True)
+
+def _get_oneway_passwd(hostname, accountid):
+    cmd = "/home/appm/bin/appm_one_cmd %s %s O 0" %
+    return check_output([cmd], shell=True)
+
+def comparePassword(data):
+    '''
+    @param data : request data
+    @type dict:
+    @return: compare resurt
+    @ data = {'hostname', 'sid', 'accountid', 'password'}
+    '''
+    if 'hostname' not in data or
+        'sid' not in data or
+        'accountid' not in data or
+        'password' not in data:
+        raise TypeError("The parameter argument values are different.")
+   
+    sql = '''
+        SELECT PASSWORD
+          FROM ACCOUNT
+         WHERE HOSTNAME = :hostname 
+           AND SID = :sid
+           AND ACCOUNTID = :accountid
+    '''
+    ret = Connection.getCursor().execute(sql, data).fetchone()[0]
+    if ret[-2:] == '==':
+    if ret == 1:
+        return True
+    elif ret == 2:
+        return "Not Found Password"
+    else:
+        return False

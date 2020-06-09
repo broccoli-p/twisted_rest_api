@@ -1,0 +1,7 @@
+[CRITICAL|rest_server.py:24] 2020-04-29 03:02:35,828 > 
+===[Log message start]===
+[rest_server.py][lineno:20][Exception] >
+[core.py][lineno:21][DatabaseError] >
+[oracle_connect.py][lineno:19][InterfaceError] >
+Unable to acquire Oracle environment handle
+===[Log message end]===
